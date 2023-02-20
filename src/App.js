@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import TopBar from './components/TopBar';
 
-function App() {
+const App = () => {
+  const [bestScore, setBestScore] = useState(0);
+  const [score, setScore] = useState(0);
+  const [pokeArray, setPokeArray] = useState([]);
+
+  const updateState = (state, value) => {
+    if (state === 'score') {
+      setScore(score + 1);
+      checkBestScore();
+    } else if (state === 'pokeArray') {
+      setPokeArray(
+        [
+          ...pokeArray, value
+        ]
+      );
+    }
+  };
+
+  const checkBestScore = () => {
+    if (score > bestScore) {
+      setBestScore(score);
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <TopBar score={score} bestScore={bestScore}/>
     </div>
-  );
+  )
 }
 
 export default App;
