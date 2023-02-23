@@ -9,7 +9,15 @@
     color: white;
 }
 
+.main {
+    display: flex;
+    justify-content: center;
+}
+
 .game-container {
     display: flex;
     gap: 20px;
+    width: 60%;
+    flex-wrap: wrap;
 }
+
