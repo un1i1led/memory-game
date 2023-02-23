@@ -20,7 +20,9 @@ const App = () => {
   return (
     <div className='App'>
       <TopBar score={score} bestScore={bestScore}/>
-      <GameContainer score={score} updateState={updateState}/>
+      <div className='main'>
+        <GameContainer score={score} updateState={updateState}/>
+      </div>
     </div>
   )
 }
