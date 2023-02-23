@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
-import { charmander, lunala, hakamo, sandshrew, ninjask } from '../img';
+import { charmander, lunala, hakamo, sandshrew, ninjask, tympole, togekiss, lickitung } from '../img';
 
 let userArray = [];
 let iconObj = {
@@ -8,23 +8,29 @@ let iconObj = {
     'lunala': lunala,
     'hakamo': hakamo,
     'sandshrew': sandshrew,
-    'ninjask': ninjask
+    'ninjask': ninjask,
+    'tympole': tympole,
+    'togekiss': togekiss,
+    'lickitung': lickitung
 }
 
 const GameContainer = props => {
     const [lostOrNo, setLostOrNo] = useState(false);
 
     const initialArray = [
-        "lunala",
-        "charmander",
-        "hakamo",
-        "ninjask",
-        "sandshrew"
+        'lunala',
+        'charmander',
+        'hakamo',
+        'ninjask',
+        'sandshrew',
+        'tympole',
+        'togekiss',
+        'lickitung'
     ];
 
     const cardOrder = () => {
         let arr = [];
-        while (arr.length !== 5) {
+        while (arr.length !== 8) {
             let pokemon = initialArray[Math.floor(Math.random() * initialArray.length)];
             if (!(arr.includes(pokemon))) {
                 arr.push(pokemon);
