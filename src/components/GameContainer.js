@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import { charmander, lunala, hakamo, sandshrew, ninjask, tympole, togekiss, lickitung } from '../img';
+import Popup from './Popup';
 
 let userArray = [];
 let iconObj = {
@@ -16,6 +17,7 @@ let iconObj = {
 
 const GameContainer = props => {
     const [lostOrNo, setLostOrNo] = useState(false);
+    const [winOrNo, setWinOrNo] = useState(false);
 
     const initialArray = [
         'lunala',
@@ -49,6 +51,7 @@ const GameContainer = props => {
     }
 
     const changeArray = (name) => {
+        console.log(name);
         if (userArray.includes(name)) {
             props.updateState('score', 0);
             userArray = [];
@@ -59,6 +62,13 @@ const GameContainer = props => {
             if (lostOrNo) {
                 setLostOrNo(false);
             }
+            if (userArray.length === 8) {
+                setWinOrNo(true);
+                userArray = [];
+                props.updateState('score', 0);
+            } else {
+                setWinOrNo(false);
+            }
         }
     }
 
@@ -66,13 +76,19 @@ const GameContainer = props => {
         if (lostOrNo) {
             document.title = 'You lost!';
         } else {
-            document.title = 'React App';
+            document.title = 'Memory Game';
         }
     }, [lostOrNo]);
 
     return (
         <div className='game-container'>
             {cardOrder()}
+            {lostOrNo && 
+                <Popup gameState={'lost'}/>
+            }
+            {winOrNo &&
+                <Popup gameState={'won'}/>
+            }
         </div>
     )
 }
