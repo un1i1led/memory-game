@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
-import { charmanderIcon, lunalaIcon, hakamoIcon, sandIcon, ninjaskIcon } from '../img';
+import { charmander, lunala, hakamo, sandshrew, ninjask } from '../img';
 
 let userArray = [];
+let iconObj = {
+    'charmander': charmander,
+    'lunala': lunala,
+    'hakamo': hakamo,
+    'sandshrew': sandshrew,
+    'ninjask': ninjask
+}
 
 const GameContainer = props => {
     const [lostOrNo, setLostOrNo] = useState(false);
@@ -10,7 +17,7 @@ const GameContainer = props => {
     const initialArray = [
         "lunala",
         "charmander",
-        "hakamo-o",
+        "hakamo",
         "ninjask",
         "sandshrew"
     ];
@@ -24,11 +31,12 @@ const GameContainer = props => {
             }
         }
 
-        console.log(userArray);
-
         return (
             arr.map((data, key) => {
-                return <Card key={key} name={data} changeArray={changeArray}/>
+                const icon = iconObj[data]
+
+                return <Card key={key} name={data} 
+                changeArray={changeArray} icon={icon}/>
             })   
         )
 
@@ -59,7 +67,6 @@ const GameContainer = props => {
     return (
         <div className='game-container'>
             {cardOrder()}
-            <Card name={'hi'} changeArray={changeArray}/>
         </div>
     )
 }
