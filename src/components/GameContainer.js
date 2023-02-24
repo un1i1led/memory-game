@@ -51,7 +51,6 @@ const GameContainer = props => {
     }
 
     const changeArray = (name) => {
-        console.log(name);
         if (userArray.includes(name)) {
             props.updateState('score', 0);
             userArray = [];
